@@ -1,0 +1,7 @@
+{
+  "name": "Copy of Arc Clones - Alta Horologia",
+  "description": "Especialista em alta horologia e réplicas premium. Precisão suíça ao seu alcance.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
