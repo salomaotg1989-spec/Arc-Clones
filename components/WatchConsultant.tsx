@@ -14,26 +14,26 @@ const WatchConsultant: React.FC = () => {
     try {
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
       
-      const prompt = `Gere uma descrição de luxo para o relógio: ${model}.
+      const prompt = `Gere uma descrição técnica e agressiva para o clone do relógio: ${model}.
       Siga RIGOROSAMENTE este padrão:
-      1. Headline chamativa (Ex: O ápice da precisão suíça).
-      2. Bullet points com especificações técnicas (foco em materiais premium).
-      3. [BARRA_FIDELIDADE]: Use símbolos visuais para mostrar 99% ou 100% de proximidade.
-      4. Call to Action focada em exclusividade.`;
+      1. Headline impactante sobre engenharia reversa.
+      2. Bullet points com especificações (Aço 904L, Safira, Movimento Calibre).
+      3. [BARRA_FIDELIDADE]: Use caracteres como [||||||||||] para indicar 99% ou 100%.
+      4. Call to Action focada em 'Bypass no sistema' ou 'Acesso exclusivo'.`;
 
       const response = await ai.models.generateContent({
         model: 'gemini-3-flash-preview',
         contents: prompt,
         config: {
-          systemInstruction: 'Você é o motor de back-end especializado da Arc Clones, focado em alta horologia e persuasão de luxo.',
+          systemInstruction: 'Você é o motor de back-end especializado da Arc Clones, operando em um terminal hacker de alta precisão.',
           temperature: 0.7,
         },
       });
 
-      setDescription(response.text || 'Falha ao gerar consultoria.');
+      setDescription(response.text || 'ERR_DATABASE_TIMEOUT: Falha ao gerar consultoria.');
     } catch (error) {
       console.error('AI Consultant Error:', error);
-      setDescription('Erro ao acessar a base de dados de horologia.');
+      setDescription('ERR_ACCESS_DENIED: Erro ao acessar a base de dados.');
     } finally {
       setLoading(false);
     }
@@ -46,53 +46,53 @@ const WatchConsultant: React.FC = () => {
 
   return (
     <div className="max-w-3xl mx-auto space-y-8 animate-in fade-in duration-700">
-      <header className="space-y-4">
-        <h2 className="text-4xl luxury-text gold-gradient">Consultor de Alta Horologia</h2>
-        <p className="text-gray-400 font-light">Informe o modelo desejado e nossa IA gerará o dossiê técnico completo com foco em fidelidade.</p>
+      <header className="space-y-4 border-l-4 border-white pl-6">
+        <h2 className="text-4xl font-bold uppercase italic tracking-tighter">Engine_IA // Horologia</h2>
+        <p className="text-gray-500 text-xs tracking-widest uppercase">Decodificando a perfeição dos ícones mundiais.</p>
       </header>
 
-      <div className="glass-panel p-8 rounded-3xl gold-border space-y-6">
+      <div className="border border-white/20 p-8 bg-black/50 space-y-6">
         <div className="relative">
             <input
             type="text"
             value={model}
             onChange={(e) => setModel(e.target.value)}
-            placeholder="Ex: Rolex Daytona Rainbow..."
-            className="w-full bg-black/40 border border-yellow-900/30 rounded-2xl p-5 text-gray-100 placeholder-gray-600 focus:ring-2 focus:ring-yellow-500/50 outline-none transition-all"
+            placeholder="DIGITE_O_MODELO_EX_SUBMARINER..."
+            className="w-full bg-black border border-white/20 rounded-none p-5 text-white placeholder-gray-700 focus:border-white outline-none transition-all font-mono text-sm"
             />
             <button
             onClick={handleConsult}
             disabled={loading || !model}
-            className="absolute right-3 top-3 bottom-3 px-6 gold-bg text-black font-bold rounded-xl disabled:opacity-50 transition-all text-xs uppercase tracking-widest"
+            className="w-full mt-4 bg-white text-black font-bold py-4 disabled:opacity-50 transition-all text-[10px] uppercase tracking-widest"
             >
-            {loading ? 'Consultando...' : 'Consultar IA'}
+            {loading ? 'EXECUTANDO_SCAN...' : '[INICIAR_CONSULTA]'}
             </button>
         </div>
       </div>
 
       {description && (
-        <div className="glass-panel p-10 rounded-3xl gold-border space-y-8 animate-in zoom-in-95 duration-500">
-          <div className="flex items-center justify-between border-b border-yellow-900/20 pb-4">
-            <span className="text-[10px] font-bold text-yellow-600 uppercase tracking-[0.3em]">Dossiê Técnico Arc Clones</span>
-            <span className="text-xs text-gray-500">IA Engine v3.1</span>
+        <div className="border border-white p-8 space-y-8 animate-in zoom-in-95 duration-500 bg-black">
+          <div className="flex items-center justify-between border-b border-white/10 pb-4">
+            <span className="text-[10px] font-bold text-white uppercase tracking-[0.3em]">RELATÓRIO_DE_ENGENHARIA_REVERSA</span>
+            <span className="text-[10px] text-gray-500 font-mono">v3.1.bin</span>
           </div>
           
           <div className="prose prose-invert max-w-none">
-            <div className="text-gray-200 leading-relaxed whitespace-pre-wrap font-light">
+            <div className="text-gray-300 leading-relaxed whitespace-pre-wrap font-mono text-sm">
               {description}
             </div>
           </div>
 
-          <div className="pt-8 flex flex-col items-center border-t border-yellow-900/20">
+          <div className="pt-8 flex flex-col items-center border-t border-white/10">
             <a 
               href={getWhatsAppLink()}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-12 py-5 gold-bg text-black font-bold rounded-full hover:scale-105 transition-transform shadow-[0_0_30px_rgba(212,175,55,0.3)] uppercase text-xs tracking-widest"
+              className="w-full text-center py-5 border border-white text-white font-bold hover:bg-white hover:text-black transition-all uppercase text-[10px] tracking-widest"
             >
-              Adquirir Peça Exclusiva
+              [REQUISITAR_ACESSO_A_PEÇA]
             </a>
-            <p className="text-[10px] text-gray-600 mt-4 uppercase tracking-widest">Apenas 3 unidades em estoque para este modelo</p>
+            <p className="text-[8px] text-red-500 mt-4 uppercase tracking-[0.2em] animate-pulse">ALERTA: ESTOQUE_LIMITADO_SESSÃO_EXPIRANDO</p>
           </div>
         </div>
       )}

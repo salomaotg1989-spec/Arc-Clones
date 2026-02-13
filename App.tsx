@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Sidebar from './components/Sidebar';
 import WatchCatalog from './components/WatchCatalog';
 import WatchConsultant from './components/WatchConsultant';
@@ -19,7 +19,8 @@ const App: React.FC = () => {
       }
       return [...prev, { ...watch, quantity: 1 }];
     });
-    alert(`${watch.name} adicionado ao arsenal.`);
+    // Feedback visual hacker em vez de alert padrão
+    console.log(`[SYS]: ${watch.name} adicionado ao buffer.`);
   };
 
   const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -40,7 +41,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-black text-white selection:bg-white selection:text-black">
+    <div className="flex min-h-screen bg-black text-white selection:bg-white selection:text-black font-mono">
       <Sidebar activeTool={activeTool} setActiveTool={setActiveTool} cartCount={cartCount} />
       
       <main className="flex-1 md:ml-64 p-4 md:p-12 overflow-y-auto">
@@ -60,11 +61,13 @@ const App: React.FC = () => {
           </div>
         </header>
 
-        {renderTool()}
+        <div className="min-h-[80vh]">
+          {renderTool()}
+        </div>
       </main>
 
       {/* Pirate/Hacker Accents */}
-      <div className="fixed top-0 right-0 p-10 opacity-5 pointer-events-none -z-10 scale-[5]">
+      <div className="fixed top-0 right-0 p-10 opacity-[0.03] pointer-events-none -z-10 scale-[5]">
         <span className="text-9xl">🏴‍☠️</span>
       </div>
     </div>
